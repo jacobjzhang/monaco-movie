@@ -5,9 +5,10 @@ const path = require('path');
 Error.stackTraceLimit = Infinity;
 
 module.exports = {
+  mode: 'development',
 	entry: {
-		"app": './src/index.js',
-		"editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js'
+		"app": './src/index.js'
+		//"editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js'
 	},
 	output: {
 		globalObject: 'self',
