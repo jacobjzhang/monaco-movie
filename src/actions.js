@@ -38,7 +38,44 @@ var actions = {
 				next();
 			}
 		}, options.delay);
-  }
+  },
+
+	/**
+	 * Creates selection for specified position
+	 * @param {Object} options
+	 * @param {CodeMirror} editor
+	 * @param {Function} next
+	 * @param {Function} timer
+	 */
+	select: function(options, editor, next, timer) {
+		// options = extend({
+		// 	from: editor.getPosition()
+		// }, wrap('to', options));
+		
+		// var from = makePos(options.from, editor);
+    // var to = makePos(options.to, editor);
+    const range = new monaco.Range(1,1,1,29);
+    setTimeout(() => {
+      editor.setSelection(range);
+    }, 9000)
+		// editor.setSelection(from, to);
+		next();
+  },
+
+  /**
+	 * Wait for a specified timeout
+	 * @param options
+	 * @param editor
+	 * @param next
+	 * @param timer
+	 */
+	wait: function(options, editor, next, timer) {
+		options = extend({
+			timeout: 100
+		}, wrap('timeout', options));
+		
+		timer(next, parseInt(options.timeout, 10));
+	}
 }
 
 function wrap(key, value) {

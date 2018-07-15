@@ -6,7 +6,10 @@ import actions from './actions';
 
 const editor = monaco.editor.create(document.getElementById('container'), {
   value: 'console.log("Hello, world")',
-  language: 'javascript'
+  language: 'javascript',
+  colors: {
+    'editor.selectionBackground': '#000'
+  }
 });
 
 var line = editor.getPosition();
@@ -24,3 +27,6 @@ const options = {
 const timer = (callback, delay) => { setTimeout(callback, delay) };
 const next = () => { return; };
 actions.type(options, editor, next, timer);
+console.log(editor.getVisibleRanges())
+actions.wait(options, editor, next, timer);
+actions.select({}, editor, next, timer)
